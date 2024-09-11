@@ -9,17 +9,25 @@ import Main_Package.Main_Class;
 public class File_Manager {
 	private Scanner my_scanner = new Scanner(System.in);
 	private Main_Class main_Class;
+	private int order = 0;
 	
 	public File_Manager( Main_Class main_Class) { this.main_Class = main_Class; }
 	
 	public void request_load_or_make_file() {
-		int order = 0;
-		while(true) { 
-			//파일 불러오기 또는 생성 요청 출력 
-			System.out.println("\nChoose your operation.");
-			System.out.println("1. Load");
-			System.out.println("2. Make");
-			
+		print_operation();
+		get_operation();
+		load_or_make_file();
+	}
+	
+	private void print_operation() {
+		//파일 불러오기 또는 생성 요청 출력 
+		System.out.println("\nChoose your operation.");
+		System.out.println("1. Load");
+		System.out.println("2. Make");
+	}
+	
+	private void get_operation() {
+		while(true) {
 			// 파일 불러오기 또는 생성 
 			order = my_scanner.nextInt();
 			
@@ -27,7 +35,9 @@ public class File_Manager {
 			if(order == 1 || order == 2) { break; }
 			System.out.println("Choose right operation");
 		}
-		
+	}
+	
+	private void load_or_make_file() {
 		if(order == 1) { load_file(); }
 		else { make_file(); }
 	}
